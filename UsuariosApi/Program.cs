@@ -24,7 +24,17 @@ app.MapGet("/ping", () => "pong");
 // GET /usuarios -> devolve a lista inteira.
 // O C# converte a lista para JSON automaticamente.
 app.MapGet("/usuarios", () => usuarios);
+app.MapGet("/usuarios/{id}", (int id) =>
+{
+    var usuario = usuarios.FirstOrDefault(u => u.Id == id);
 
+    if (usuario is null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(usuario);
+});
 // 5) EXECUÇÃO: liga o servidor e fica esperando pedidos.
 // Tem que ser a última linha.
 app.Run();
