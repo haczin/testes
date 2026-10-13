@@ -1,14 +1,20 @@
-// "Ficha em branco": define quais campos um usuário tem.
-// Só os títulos dos campos, sem valores.
+// ============================================================
+// Usuario.cs
+// Modelo de dados: define quais campos um usuário tem.
+// É o formato que a API recebe e devolve em JSON.
+//
+// Exemplo de JSON (note que o C# converte para camelCase):
+//   { "id": 1, "nome": "Rafael", "email": "rafael@email.com" }
+// ============================================================
 public class Usuario
 {
-    // Número inteiro que identifica o usuário (1, 2, 3...)
-    // { get; set; } = pode ser lido e alterado
+    // Identificador único. Quem gera é o SERVIDOR (no POST),
+    // então quem consome a API não precisa enviar o id ao criar.
     public int Id { get; set; }
 
-    // Texto. O = "" dá um valor inicial vazio, para nunca começar como null
+    // Nome do usuário (obrigatório)
     public string Nome { get; set; } = "";
 
-    // Mesma ideia do Nome
+    // E-mail do usuário (obrigatório, precisa ser único)
     public string Email { get; set; } = "";
 }
